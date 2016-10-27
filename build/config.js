@@ -1,4 +1,15 @@
 'use strict'
+
+const path = require('path')
+const resolve = path.resolve
+const base = (...args) =>
+  Reflect.apply(resolve, null, [path.resolve(__dirname, '..'), ...args])
+const paths = {
+  base: base,
+  client: base.bind(null, 'client'),
+}
+
+
 const pkg = require('../package')
 
 module.exports = {

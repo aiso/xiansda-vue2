@@ -19,7 +19,7 @@ module.exports = {
     alias: {
       root: path.join(__dirname, '../client'),
       components: path.join(__dirname, '../client/components')
-    }
+    },
   },
   module: {
     loaders: [
@@ -43,8 +43,56 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]'
         }
       }
-    ]
+    ],
+    postLoaders: [
+      { test: /vue-icons/, loader: "callback-loader"}
+    ],
   },
+  callbackLoader: require("vue-icons/icon-loader")([
+    'material-home',
+    'material-menu',
+    'material-more_horiz',
+    'material-more_vert',
+    'material-extension',
+    'material-info_outline',
+    'material-wifi',
+    'material-edit',
+    'material-arrow_back',
+    'material-chevron_right',
+    'material-clear',
+    'material-person',
+    'material-add',
+    'material-remove',
+    'material-exit_to_app',
+    'material-keyboard_backspace',
+    'material-done',
+    'material-work',
+    'material-person',
+    'material-local_offer',
+    'material-build',
+    'material-store',
+    'material-store_mall_directory',
+    'material-notifications',
+    'material-delete_forever',
+    'material-shopping_cart',
+    'material-remove_shopping_cart',
+    'material-favorite',
+    'material-favorite_border',
+    'material-check_box',
+    'material-check_box_outline_blank',
+    'material-local_shipping',
+    'material-payment',
+    'material-refresh',
+    'material-import_export',
+    'material-error_outline',
+    'material-textsms',
+    'material-backspace',
+    'material-shopping_basket',
+    'material-call',
+    'material-local_mall',
+    'material-hourglass_empty',
+    'material-subscriptions'
+  ]),
   babel: config.babel,
   postcss: config.postcss,
   vue: {
