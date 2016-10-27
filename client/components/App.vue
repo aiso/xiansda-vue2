@@ -1,26 +1,21 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div id="app" class="container">
+    <xsd-header></xsd-header>
+    <transition name="fade" mode="out-in">
+      <router-view class="router-view" keep-alive-stop></router-view>
+    </transition>
   </div>
 </template>
 
-<style>
-body {
-  margin: 0;
-  font-size: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont,
-               'avenir next', avenir,
-               helvetica, 'helvetica neue',
-               Ubuntu,
-               'segoe ui', arial,
-               sans-serif;
+<script>
+import XsdHeader from './Header'
+
+export default {
+  components: {
+    XsdHeader
+  }
 }
-.page {
-  text-align: center;
-}
-code {
-  background-color: #f0f0f0;
-  padding: 3px 5px;
-  border-radius: 2px;
-}
-</style>
+</script>
+
+
+<style src="../assets/app"></style>
