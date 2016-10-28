@@ -4,10 +4,19 @@
     </div>
 </template>
 
+<script>
+export default {
+  computed: {
+    count() {
+      return 0
+    }
+  }
+}
+</script>
 
 <style>
 .xsd-header{
-  height: 44px;
+  height: var(--header);
   width:100%;
   display: flex;
   z-index: 11;
@@ -18,7 +27,7 @@
       color:#444;
       display: block;
       width: 46px;
-      height: 44px;
+      height: var(--header);
       line-height: 48px;
       font-size:24px;
       text-align: center;

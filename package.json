@@ -15,7 +15,8 @@
     "vue": "^2.0.0",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
-    "vuex-router-sync": "^3.0.0"
+    "vuex-router-sync": "^3.0.0",
+    "nd-promise": "^3.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -36,8 +37,11 @@
     "callback-loader": "^0.2.4",
     "html-webpack-plugin": "^2.22.0",
     "postcss-loader": "^0.9.1",
+    "postcss-mixins": "^4.0.2",
     "postcss-nested": "^1.0.0",
     "postcss-custom-properties": "^5.0.1",
+    "postcss-functions": "2.1.0",
+    "postcss-cssnext": "^2.6.0",
     "progress-bar-webpack-plugin": "^1.9.0",
     "style-loader": "^0.13.1",
     "vue-loader": "^9.3.2",

@@ -1,5 +1,5 @@
 {
-  "primary": "#FF8702",
+  "primary": "#4fd2c2",
   "secondary": "#284f75",
   "success": "#3ABA58",
   "price": "#E53206",
@@ -9,7 +9,7 @@
   "bgLight": "#f1f1f1",
   "footer": "#f0f2f7",
   "text": "#686868",
-  "textLight": "#aaa",
+  "textLight": "#ccc",
   "headerHeight": "48px",
   "footerHeight": "48px",
   "navbar": "50px",

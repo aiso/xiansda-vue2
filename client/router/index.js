@@ -16,7 +16,7 @@ const routes = [
     {
       path: '/demo',
       component: require('../views/Demo'),
-      meta: { requiresAuth: true }      
+      //meta: { requiresAuth: true }      
     }       
 ]
 
