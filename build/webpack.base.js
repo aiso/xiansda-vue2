@@ -61,13 +61,13 @@ module.exports = {
     'material-chevron_right',
     'material-clear',
     'material-person',
+    'material-vpn_key',
     'material-add',
     'material-remove',
     'material-exit_to_app',
     'material-keyboard_backspace',
     'material-done',
     'material-work',
-    'material-person',
     'material-local_offer',
     'material-build',
     'material-store',
@@ -103,7 +103,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: config.title,
       template: __dirname + '/index.html',
-      filename: _.outputIndexPath
+      filename: _.outputIndexPath,
+      favicon: path.join(__dirname, '../client/assets/favicon.ico')
     })
   ],
   target: _.target

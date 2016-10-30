@@ -4,7 +4,8 @@ import Promise from 'nd-promise'
 import qs from 'querystring'
 import isPlainObj from 'is-plain-obj'
 
-//const proxyUrl = __DEV__ ? '/api/' : ''
+//const proxyUrl = __DEV__ ? '/xiansda/1/api/' : '/api/'
+//const proxyUrl = '/xiansda/1/api/'
 const proxyUrl = '/api/'
 
 const defaultOptions = {

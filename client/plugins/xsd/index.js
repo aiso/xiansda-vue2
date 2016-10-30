@@ -1,12 +1,8 @@
 /* global Vue */
-import store from 'store'
-
-import { 
-  SET_AUTH, 
-} from 'store/constants'
-
+import store from '../../store'
 import api from './api'
 import sync from './sync'
+
 
 const xsd = {}
 xsd.install = function (Vue) {
@@ -57,7 +53,7 @@ xsd.install = function (Vue) {
 }
 
 xsd.init = () =>{
-  return sync.load('base','transes')
+  return sync.load('base')
 }
 
 if (window.Vue) {

@@ -1,14 +1,8 @@
 import Promise from 'nd-promise'
-import store from 'store'
-import request from 'utils/request'
-import base64 from 'utils/base64'
+import store from '../../store'
+import request from '../../utils/request'
+import base64 from '../../utils/base64'
 
-import { 
-  SET_AUTH,
-  SET_USER, 
-  ADD_TOAST,
-  DELETE_TOAST
-} from 'store/constants'
 
 const xsdCache = []
 let _requestQue = []
@@ -29,20 +23,20 @@ function chkAuth(){
 const _request = options => {
   return request(Object.assign(options, chkAuth())).then(data => {
     if(!!data.aiso_auth_refresh){
-      store.commit(SET_USER, data.aiso_auth_refresh)
+      store.commit('SET_USER', data.aiso_auth_refresh)
     }
     return data;
   }).catch(result=>{
     //console.log(options)
     //console.log(result)
     if(result.error.code == 401){
-      store.commit(SET_AUTH, null);
+      store.commit('SET_AUTH', null);
       router.go({ name:'login' })
     }else{
-      const toast = { class:'error', timeout:0, message:result.error.message, remove:()=>{
-        store.commit(DELETE_TOAST, toast)
+      const toast = { _id:Date.now() ,class:'error', timeout:0, message:result.error.message, remove:()=>{
+        store.commit('DELETE_TOAST', toast)
       } }
-      store.commit(ADD_TOAST, toast)
+      store.commit('ADD_TOAST', toast)
       //this.$alert.error(result)
     }
 

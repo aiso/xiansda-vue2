@@ -1,5 +1,5 @@
 import Promise from 'nd-promise'
-import store from 'store'
+import store from '../../store'
 
 const _baseUrl = () => {
 	if(window.location.href.indexOf('localhost') > 0)

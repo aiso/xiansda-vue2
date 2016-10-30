@@ -1,3 +1,9 @@
-import {app} from './app'
+import {app, xsd} from './app'
 
-app.$mount('#app')
+xsd.init().then(()=>{
+  app.$mount('#app')
+}).catch(err=>{
+  console.log(err)
+})
+
+//app.$mount('#app')

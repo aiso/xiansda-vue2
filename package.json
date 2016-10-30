@@ -16,7 +16,8 @@
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^3.0.0",
-    "nd-promise": "^3.0.2"
+    "nd-promise": "^3.0.2",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -48,6 +49,7 @@
     "vue-icons": "^2.0.0",
     "webpack": "2.1.0-beta.22",
     "webpack-dev-middleware": "^1.8.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.12.2",
+    "http-proxy-middleware": "^0.17.2"
   }
 }

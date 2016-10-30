@@ -16,4 +16,8 @@
 	    border-bottom-color: #4fd2c2
 	}
 
+    &.invalid{
+        border-bottom-color: color(#ee5f5b alpha(30%))
+    }
+
 }

@@ -12,6 +12,17 @@ base.plugins.push(
   new webpack.NoErrorsPlugin()
 )
 
+
+base.devProxy = {
+  '/api': {
+    target: 'http://localhost',
+    pathRewrite: {
+      '^/api' : '/xiansda/1/api'
+    }
+  }
+}
+
+
 // push loader for .css file
 base.module.loaders.push(
   {

@@ -1,21 +1,15 @@
-import store from 'store'
+import store from '../../store'
 import api from './api'
 import staticData from './static'
 
-import { 
-  SET_AUTH, 
-  SET_NAV_MAIN_ROUTES,
-  SET_FAVORITES,
-} from 'store/constants'
-
-export default {
+module.exports = {
   login: auth=>{
     return api.post('user/login', auth).then( data => {
-      store.commit(SET_AUTH, { user:data.user, profile:data.profile });
+      store.commit('SET_AUTH', { user:data.user, profile:data.profile });
       return data.user
     }).then(user=>{
       if(user.role == staticData.role.client){
-        store.commit(SET_NAV_MAIN_ROUTES, require('routes/client/navigator'))
+        store.commit('SET_NAVIGATIONS', require('../../router/client').navigation)
         return true
         /*
         return api.get('client/props').then(data=>{
@@ -24,17 +18,17 @@ export default {
         })*/
       }
       else if(user.role == staticData.role.supplier){
-        store.commit(SET_NAV_MAIN_ROUTES, require('routes/supplier/navigator'))
+        store.commit('SET_NAVIGATIONS', require('../../router/supplier').navigation)
         return true
       }
       else if(user.role == staticData.role.station){
-        store.commit(SET_NAV_MAIN_ROUTES, require('routes/station/navigator'))
+        store.commit('SET_NAVIGATIONS', require('../../router/station').navigation)
         return true
       }else
         return false
     })
   },
   logout: ()=>{
-    store.commit(SET_AUTH, null)
+    store.commit('SET_AUTH', null)
   }
 }

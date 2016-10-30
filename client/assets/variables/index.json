@@ -18,6 +18,8 @@
   "grayLight": "#dbdbdb",
   "border": "#e7e7e9",
 
+  "formHeight": "38px",
+
   "blue":"#2D96E9",
   "blue-primary":"#3598db",
   "blue-light":"#4FC7E8",

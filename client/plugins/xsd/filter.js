@@ -67,7 +67,6 @@ const install = Vue => {
 	})
 }
 
-
-export default {
+module.exports = {
 	install
 }

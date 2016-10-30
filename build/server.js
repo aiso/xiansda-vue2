@@ -29,6 +29,14 @@ const devMiddleWare = require('webpack-dev-middleware')(compiler, {
 app.use(devMiddleWare)
 app.use(require('webpack-hot-middleware')(compiler))
 
+
+const proxyMiddleware = require('http-proxy-middleware')
+if(webpackConfig.devProxy) {
+  Object.keys(webpackConfig.devProxy).forEach(function(context) {
+    app.use(proxyMiddleware(context, webpackConfig.devProxy[context]));
+  });
+}
+
 const mfs = devMiddleWare.fileSystem
 const file = path.join(webpackConfig.output.path, 'index.html')
 app.get('*', (req, res) => {

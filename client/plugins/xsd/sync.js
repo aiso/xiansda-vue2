@@ -1,14 +1,9 @@
 import Promise from 'nd-promise'
-import store from 'store'
+import store from '../../store'
 import api from './api'
 import sd from './static'
 import service from './service'
 import action from './action'
-
-import { 
-  SET_TRANSES,
-  SET_WORKS, 
-} from 'store/constants'
 
 const entities = {
 	base : () => {
@@ -23,7 +18,7 @@ const entities = {
 		const user = store.getters.user
 		if(!!user){
 			return api.get(sd.roleName(user.role)+'/transes').then(data=>{
-				store.commit(SET_TRANSES, data.transes)
+				store.commit('SET_TRANSES', data.transes)
 				return data
 	        })
 		}else

@@ -7,7 +7,7 @@ const role = {
 
 const roleName = rid => {
 	const names = Object.keys(role)
-	const rids = Object.values(role)
+	const rids = names.map(name=>role[name])
 	const idx = rids.findIndex(id=>id==rid)
 	return (idx>=0)?names[idx]:null
 }

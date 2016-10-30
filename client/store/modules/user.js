@@ -22,7 +22,7 @@ const mutations = {
     state.profile = payload
     localStore.set(state)
   },
-  SET_NAVIGATION(state, payload) {
+  SET_NAVIGATIONS(state, payload) {
     state.navigation = payload
     localStore.set(state)
   },
@@ -39,7 +39,7 @@ const actions = {
     commit('SET_PROFILE', profile)
   },
   setNavigation({ commit }, navigation) {
-    commit('SET_NAVIGATION', navigation)
+    commit('SET_NAVIGATIONS', navigation)
   },
 }
 
