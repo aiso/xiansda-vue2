@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="container">
-	<c-toast class="toast" :toasts="$store.getters.toasts"></c-toast>
-
+    <c-toast class="toast" :toasts="$store.getters.toasts"></c-toast>
+    <c-alert ref="xsdAlert"></c-alert>
+    <c-confirm ref="xsdConfirm"></c-confirm>
+    <c-textbox ref="xsdTextbox"></c-textbox>
     <xsd-header></xsd-header>
     <transition name="fade" mode="out-in">
       <keep-alive>
@@ -12,12 +14,15 @@
 </template>
 
 <script>
-import { CToast } from './base'
+import { CToast, CAlert, CConfirm, CTextbox } from './base'
 import XsdHeader from './Header'
 
 export default {
   components: {
   	CToast,
+    CAlert,
+    CConfirm,
+    CTextbox,
     XsdHeader
   }
 }

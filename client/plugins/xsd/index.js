@@ -27,17 +27,17 @@ xsd.install = function (Vue) {
 	  },
     $alert: {
       get () {
-        return this.$root.$refs.modalAlert
+        return this.$root.$refs.xsdAlert
       }
     },
     $confirm: {
       get () {
-        return this.$root.$refs.modalConfirm
+        return this.$root.$refs.xsdConfirm
       }
     },
-    $text: {
+    $textbox: {
       get () {
-        return this.$root.$refs.modalText
+        return this.$root.$refs.xsdTextbox
       }
     },
     $navbar: {

@@ -251,7 +251,6 @@ a.list-item{
   transition: all .5s
 }
 .right-in-enter, .right-in-leave-active {
-  opacity: 0;
   -webkit-transform: translateX(100%);
   -moz-transform: translateX(100%);
   transform: translateX(100%);

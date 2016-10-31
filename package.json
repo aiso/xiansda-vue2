@@ -16,6 +16,7 @@
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^3.0.0",
+    "vue-validator": "^3.0.0-alpha",
     "nd-promise": "^3.0.2",
     "whatwg-fetch": "^1.0.0"
   },
