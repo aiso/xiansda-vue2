@@ -66,6 +66,7 @@ module.exports = {
     'material-remove',
     'material-exit_to_app',
     'material-keyboard_backspace',
+    'material-backspace',
     'material-done',
     'material-work',
     'material-local_offer',

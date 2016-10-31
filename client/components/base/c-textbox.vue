@@ -1,13 +1,14 @@
 <template>
   <c-modal :show="show" @maskClicked="close">
     <div class="c-textbox">
-      <c-autosize-textarea 
+      <h3 class="mb15 pl5">{{title}}</h3>
+      <c-autosize-textarea ref="textBox"
         :handle-change="handleChange" 
         :value="textMessage">
       </c-autosize-textarea>
       <div class="flex-row">
         <c-icon-button icon="material-clear" @click.native="close"></c-icon-button>
-        <h4>{{title}}</h4>
+        <c-icon-button icon="material-backspace" @click.native="clean" :class="{'c-text-light':_disabled}"></c-icon-button>
         <div class="flex-auto"></div>
         <c-button label="提交" class="fit small primary" :disabled="_disabled" :submit="_submit"></c-button>
       </div>
@@ -47,6 +48,10 @@ export default {
     close(){
       this.show=false
       this.deferred.reject()
+    },
+    clean(){
+      this.textMessage = null
+      this.$refs.textBox.$el.value=''
     },
     _submit(){
       this.show=false

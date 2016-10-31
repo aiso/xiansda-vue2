@@ -24,6 +24,16 @@ const entities = {
 		}else
 			Promise.resolve()
 	},
+	items : () =>{
+		const user = store.getters.user
+		if(!!user){
+			return api.get(sd.roleName(user.role)+'/items').then(data=>{
+				store.commit('SET_ITEMS', data.items)
+				return data
+	        })
+		}else
+			Promise.resolve()
+	},
 	/*
 	works : () => {
 		if(!!store.getters.user){

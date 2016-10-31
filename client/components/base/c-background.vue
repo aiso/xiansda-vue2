@@ -1,21 +1,28 @@
 <template>
-  <div class="c-background">
-    <c-icon :name="_icon"></c-icon>
-    <h2 class="title">{{_title}}</h2>
-    <p class="description">{{description}}</p>
-    <slot></slot>
+  <div class="c-background" v-if="state!='hide'">
+    <div v-if="state!='loading'">
+      <c-icon :name="_icon"></c-icon>
+      <h3 class="title">{{_title}}</h3>
+      <p class="description">{{description}}</p>
+      <slot></slot>
+    </div>
+    <div v-if="state=='loading'">
+      <c-loading></c-loading>
+      <h3 class="c-text-light text-ls mt10">加载数据中...</h3>
+    </div>
   </div>
 </template>
 
 
 <script>
 import CIcon from './c-icon'
+import CLoading from './c-loading'
 
 export default {
   props: {
-    class: {
+    state: {
       type: String,
-      default: ''
+      default: 'hide'
     },
     icon: {
       type: String,
@@ -43,7 +50,8 @@ export default {
     }    
   },
   components: {
-    CIcon
+    CIcon,
+    CLoading
   }
 }
 </script>
@@ -63,6 +71,10 @@ export default {
   & .c-icon{
     font-size:80px;
     line-height: 70px;
+  }
+
+  & .title{
+    margin-top:10px;
   }
 
   & .description{

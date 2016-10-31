@@ -17,9 +17,6 @@ Vue.use(IScroll)
 import xsd from './plugins/xsd'
 Vue.use(xsd)
 
-import VueAutosize from 'vue-autosize'
-Vue.use(VueAutosize)
-
 const app = new Vue({
   router,
   store,
