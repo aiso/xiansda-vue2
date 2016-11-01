@@ -78,14 +78,6 @@ export default {
   width:100%;
   padding:20px 10px 10px;
 
-  & textarea{
-    background: var(--bgLight);
-    width:100%;
-    border:0;
-    padding:10px;
-    font-size:14px;
-  }
-
   & .c-button{
     display: inline-block;
   }

@@ -12,12 +12,17 @@
         </router-link>
       </c-cell>
     </div>
+    <c-xsd-toolbar>
+      <router-link class="btn" to="/supplier/item/new">
+        <c-icon name='material-add'></c-icon>
+      </router-link>
+    </c-xsd-toolbar>
   </div>
 </template>
 
 <script>
-import {CPane, CCell, CBackground, CButton, CLoading} from '../../components/base'
-import { CXsdItem } from '../../components/xsd'
+import {CPane, CCell, CIcon, CBackground, CButton, CLoading} from '../../components/base'
+import { CXsdItem, CXsdToolbar } from '../../components/xsd'
 export default {
   data(){
   	return {
@@ -39,10 +44,12 @@ export default {
   components: {
   	CPane,
     CCell,
+    CIcon,
   	CBackground,
   	CButton,
     CLoading,
-    CXsdItem
+    CXsdItem,
+    CXsdToolbar
   }
 }
 </script>

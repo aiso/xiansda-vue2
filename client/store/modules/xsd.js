@@ -17,12 +17,10 @@ const mutations = {
     state.items.push(payload)
   },
   UPDATE_ITEM (state, payload) {
-    const idx = state.items.findIndex( item => item.id == payload.id )
-    state.items.splice(idx, 1, payload)
+    state.items.splice(payload.idx, 1, payload.item)
   },
   REMOVE_ITEM (state, payload) {
-    const idx = state.items.findIndex( item => item.id == payload )
-    state.items.splice(idx, 1)
+    state.items.splice(payload.idx, 1)
   },
   SET_TRANSES(state, payload){
     state.transes = payload
@@ -33,14 +31,23 @@ const actions = {
   setItems ({ commit }, items) {
     commit('SET_ITEMS', items)
   },
-  addItem ({ commit }, payload) {
-    commit('ADD_ITEM', payload)
+  addItem ({ commit, state }, item) {
+    if(!!state.items)
+      commit('ADD_ITEM', item)
   },
-  updateItem ({ commit }, payload) {
-    commit('UPDATE_ITEM', payload)
+  updateItem ({ commit, state }, item) {
+    if(!!state.items){
+      const idx = state.items.findIndex( i => i.id == item.id )
+      if(idx>=0)
+        commit('UPDATE_ITEM', {idx, item})
+    }
   },
-  removeItem ({ commit }, payload) {
-    commit('REMOVE_ITEM', payload)
+  removeItem ({ commit }, item) {
+    if(!!state.items){
+      const idx = state.items.findIndex( i => i.id == item.id )
+      if(idx>=0)
+        commit('REMOVE_ITEM', {idx, item})
+    }
   },
   setTranses ({ commit }, transes) {
     commit('SET_TRANSES', transes)

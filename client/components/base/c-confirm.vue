@@ -5,8 +5,8 @@
         <h3>{{message}}</h3>  
       </div>
       <div class="border-top pt10 flex-row">
-        <c-button class="warning" label="取消" :submit="_cancel"></c-button>
         <c-button class="primary" label="确定" :submit="_confirm"></c-button>
+        <c-button class="warning" label="取消" :submit="_cancel"></c-button>
       </div>
     </div>
   </c-modal>

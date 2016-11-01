@@ -74,7 +74,7 @@ h6{
   width: 100%;
   height: 100%;
   padding-top: var(--header);
-  padding-bottom: var(--navbar);
+  padding-bottom: var(--footerHeight);
 
   & .notice-fillter{
     padding-top: var(--header);
@@ -160,6 +160,14 @@ h6{
 .input-simple{
   border: 0;
   outline: 0;
+}
+
+.input-gray{
+  border: 0;
+  outline: 0;
+  background: var(--bgLight);
+  padding:.5rem;
+  width: 100%;
 }
 
 .full-width{

@@ -77,11 +77,9 @@
         this.reInitTimer = setTimeout(() => {
           this.reInitPages()
         }, 100)
-        console.log('aaaaaaa')
       },
 
       swipeItemDestroyed () {
-        console.log('bbbb')
         if (!this.ready) return
 
         clearTimeout(this.reInitTimer)

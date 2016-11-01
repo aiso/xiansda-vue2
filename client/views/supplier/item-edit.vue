@@ -1,36 +1,54 @@
 <template>
   <div class='page-wrapper'>
+    <c-background :state="bgState"></c-background>
     <c-pane v-if="item">
-
-      <div class="table-row border-top">
-        <div class="extend p20"> 
-            <c-label>添加图片</c-label>
-        </div>
-        <div>
-          <a @click="addImage"><c-icon name="material-add" class='block'></c-icon></a>  
-        </div>
+      <div class="divider"></div>
+      <div>
+        <c-label>产品名称：</c-label>
+        <c-autosize-textarea 
+          :attrs="{placeholder:'长度不小于10'}"
+          :handle-change="hangeTitle" 
+          :value="item.title">
+        </c-autosize-textarea>
       </div>
-      <div v-for="img in images">
-        <div class="table-row mb10" v-show="img.delete!==true">
-          <div class="plr20">
-            <c-xsd-image :src="img.url" class="image-square" width=40 height=40></c-xsd-image>  
-          </div>
-          <div class="extend pr10">
-            <h4>{{img.name}}</h4>
-            <p>{{img.size}}</p>
-          </div>
-          <div>
-            <a class="warning" @click="img.delete=true"><c-icon name="material-clear" class="block"></c-icon></a>
+      <div class="divider"></div>
+      <div>
+        <c-label class="flex-auto">产品价格：</c-label>
+        <input @input="handlePrice" :value="item.price" class="input-gray" placeholder='0.00'>
+      </div>
+      <div class="divider"></div>
+      <div>
+        <c-label>产品描述：</c-label>
+        <c-autosize-textarea
+          :handle-change="hangeContent" 
+          :value="item.content">
+        </c-autosize-textarea>
+      </div>
+      <div class="divider"></div>
+      <div>
+        <div class="flex-row">
+          <c-label class="flex-auto">产品图片：</c-label>  
+          <a @click="addImage"><c-icon name="material-add" class='btn'></c-icon></a>  
+        </div>
+        <div v-for="img in images">
+          <div class="table-row mt10" v-show="img.delete!==true">
+            <div class="plr20">
+              <c-thumbnail :src="img.url" class="image-square" width=40 height=40></c-thumbnail>  
+            </div>
+            <div class="extend pr10">
+              <h4>{{img.name}}</h4>
+              <p>{{img.size}}</p>
+            </div>
+            <div>
+              <a class="warning" @click="img.delete=true"><c-icon name="material-clear" class="block"></c-icon></a>
+            </div>
           </div>
         </div>
       </div>
     </c-pane>
 
     <c-xsd-toolbar>
-      <c-button :class="action.class"
-          :type="action.type"
-          @click="save"
-          :disabled="action.disabled">{{action.label}}</c-button>
+      <c-button class="mr10 primary" label="保存" :submit="save" :disabled="invalid"></c-button>
     </c-xsd-toolbar>
 
   </div>
@@ -38,124 +56,38 @@
 
 
 <script>
-import { CPane, CCell, CLabel, CButton, CIcon, CThumbnail } from '../../components/base'
+import { CBackground, CPane, CCell, CLabel, CButton, CIcon, CThumbnail, CFormCell, CAutosizeTextarea } from '../../components/base'
+import { CXsdToolbar } from '../../components/xsd'
 import ImageUtil from '../../utils/image'
 
 export default {
-  props: {
-    itemId: {
-      type: Number,
-      default: 0
-    },
-  },
   data () {
     return {
-      item: { id:0 },
+      bgState:'hide',
+      item: { id:0, title:null, content:null, price:null },
       images: [],
     }
   },
-  attached () {
+  activated(){
     if(!!this.itemId){
-      if(this.onActivity)
-        this.initData(this.activityItem);
-      else{
-        this.xsd.item.get(this.itemId).then(item=>{
-          this.initData(item);
-        })
-      }
+      this.bgState = 'loading'
+      this.xsd.item.get(this.itemId).then(item=>{
+        this.initData(item);
+         this.bgState = 'hide'
+      })
+    }else{
+      this.item = { id:0, title:null, content:null, price:null }
+      this.images = []
     }
   },
-  computed: {
-    fields () {
-      return {
-        title: this.item.title,
-        price: this.item.price,
-        content: this.item.content,
-        service: this.item.service
-      }
+  computed:{
+    itemId(){
+      return !!this.$route.params.id?this.$route.params.id:0
     },
-    imageMutate() {
-      var mutate = false
-      this.images.forEach(img=>{
-        mutate |= (img.id == 0 || img.delete === true)
-      })
-      return mutate
+    invalid(){
+      return !this.item.title || this.item.title.length < 10 
+        || !this.item.price || !this.xsd.regex.price.test(this.item.price)
     },
-    cells () {
-      const serviceOptions = this.xsd.service.all().map(s=>{
-        return { label:s.config.title, value:s.config.id }
-      })
-      return {
-        title: {
-          label: '产品名称',
-          icon: 'user',
-          type: 'multiline',
-          attrs: {
-            placeholder: '只能包含小写英文字母'
-          },
-          validate: {
-            required: {
-              rule: true,
-              message: '请输入产品名称'
-            },
-            minlength: {
-              rule: 4,
-              message: '产品不能少于 4 个字符'
-            },
-            maxlength: {
-              rule: 256,
-              message: '产品不能多于 256 个字符'
-            }
-          }
-        },
-        service: {
-          label: '产品类型',
-          icon: 'check',
-          type: 'CSelect',
-          attrs: {
-            placeholder: '关于产品的描述...'
-          },
-          extra: {
-            options:serviceOptions
-          }
-        },
-        price: {
-          label: '产品价格',
-          icon: 'user',
-          type: 'textfield',
-          attrs: {
-            placeholder: '0.00'
-          },
-          validate: {
-            min: {
-              rule: 0.01,
-              message: '价格错误'
-            },
-            max: {
-              rule: 1000000000,
-              message: '价格错误'
-            }
-          }
-        },
-        content: {
-          label: '产品描述',
-          icon: 'check',
-          type: 'multiline',
-          value: this.item.content,
-          attrs: {
-            placeholder: '关于产品的描述...'
-          },
-        }
-      }
-    },
-    action () {
-      return {
-        type: 'submit',
-        class: 'small primary',
-        label: this.progress ? '保存中...' : '保存',
-        disabled: !!this.progress || (this.$validation && this.$validation.invalid)
-      }
-    }
   },
   methods: {
     initData(item){
@@ -166,8 +98,15 @@ export default {
       this.item = item
       this.images = images
     },
-    mutate ($payload) {
-      this.payload = $payload
+    hangeTitle(e){
+      this.item.title = e.target.value
+    },
+    hangeContent(e){
+      this.item.content = e.target.value
+    },
+    handlePrice(e){
+      console.log(e)
+      this.item.price = e.target.value
     },
     addImage () {
         ImageUtil.select().then( img => {
@@ -178,44 +117,35 @@ export default {
       this.images[idx].delete = true;
     },
     save () {
-      if (!this.payload && !this.imageMutate) {
+      if (this.invalid) {
         return
       }
-      // validate then submit
-      this.$validate().then(() => {
-        var modify = Object.assign({ images:this.images }, this.payload)
 
-        this.xsd.api.post('item/'+this.item.id, modify).then( data => {
-          if(!!this.itemId){
-            this.updateItem(data.item)
-            this.xsd.item.dirty(+this.itemId)
+      var modify = Object.assign({ }, this.item, { images:this.images })
+      this.xsd.api.post('item/'+this.itemId, modify).then( data => {
+        if(!!this.itemId){
+          this.$store.dispatch('updateItem',data.item)
+          this.xsd.item.dirty(this.itemId)
+        }
+        else{
+          this.$store.dispatch('addItem',data.item)
+        }
+        this.xsd.nav.back()
 
-            if(this.onActivity){
-              this.xsd.item.get(this.itemId).then(item=>{
-                this.setActivityItem(item)
-              })              
-            }
-            this.$emit('mutate', 'editCallback', data.item.id)
-          }
-          else{
-            this.addItem(data.item)
-            this.$emit('mutate', 'newCallback', data.item.id)
-          }
-
-        })
-
-      }).catch($validation => {
-        // this.$emit('error', $validation)
       })
     }
   },
   components: {
+    CBackground,
     CPane, 
     CCell, 
     CLabel, 
     CButton, 
     CIcon, 
-    CThumbnail
+    CThumbnail,
+    CFormCell,
+    CAutosizeTextarea,
+    CXsdToolbar
   }
 }
 </script>

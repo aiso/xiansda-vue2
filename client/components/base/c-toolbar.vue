@@ -10,6 +10,9 @@
   height: var(--footerHeight);
   width: 100%;
   display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
 
   & .center{
     flex:auto;
@@ -31,6 +34,13 @@
       font-size:24px;
       line-height: var(--footerHeight);
     }
+  }
+
+  & .c-button{
+    width:auto;
+    padding:0 1rem;
+    line-height: 1rem;
+    height: 2rem;
   }
 
   & .title{

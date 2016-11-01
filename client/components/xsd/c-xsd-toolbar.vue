@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     back(){
-      history.back()
+      this.xsd.nav.back()
     }
   },
   components: {

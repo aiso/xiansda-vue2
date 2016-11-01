@@ -12,6 +12,11 @@ const payment = id => {
 	window.location.href = _baseUrl() + '/weixin/wx_jspay.php?payment='+id
 }
 
-export default {
-	payment
+const back = () => {
+	history.back()
+}
+
+module.exports = {
+	payment,
+	back
 }
