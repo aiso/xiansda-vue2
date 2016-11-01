@@ -3,7 +3,7 @@ import api from './api'
 
 const _items = []
 
-export default {
+module.exports = {
   get(id){
     if(id instanceof Array){
       const reqs = id.filter(i=>typeof(_items[i]) == 'undefined')

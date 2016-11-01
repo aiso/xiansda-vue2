@@ -13,9 +13,13 @@
 <script>
 export default {
   props: {
+    class: {
+      type: String,
+      default: ''
+    },
     src: {
       type: String,
-      default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+      default: '../../assets/images/noimg.jpg'
     },
     alt: {
       type: String,
@@ -33,24 +37,51 @@ export default {
       type: [String, Number],
       default: ''
     },
-    keepRatio: {
+    ratio: {
+      type: [String, Number],
+      default: ''
+    },
+    letterBox: {
       type: Boolean,
       default: true
     }
   },
-
   methods: {
     _load ($event) {
-      if (this.keepRatio) {
-        const img = $event.path[0]
-        getSize(img.src).then(({ width, height }) => {
-          const ratio = width / height
-          if (ratio !== img.width / img.height) {
-            // 只处理宽度缩小的情况
-            img.height = img.width / ratio
+      //console.log('width='+this.width+',height='+this.height);
+      if(this.width) this.$el.style.width = this.width+'px'
+      if(this.height) this.$el.style.height = this.height+'px'
+
+      const img = $event.path[0]
+      const w = this.width||img.parentNode.style.width||img.parentNode.clientWidth
+      const h = (!!this.ratio)?(w*this.ratio):(this.height||img.parentNode.style.height||img.parentNode.clientHeight)
+      const cRatio = w/h;
+      //console.log('w='+w+',h='+h+',cRatio='+cRatio);
+
+      getSize(img.src).then(({ width, height }) => {
+        const ratio = width / height
+        if(this.letterBox){
+          const scale = (ratio > cRatio)?(h/height):(w/width) // ratio > cRatio 原图宽比例较大，以高度比例缩放
+          //console.log(scale)
+          const imgWidth = width*scale
+          const imgHeight = height*scale
+
+          img.style.width = imgWidth+'px'
+          img.style.height = imgHeight+'px'
+
+          if(ratio > cRatio){ // 宽位移
+            img.style.left = -(imgWidth - w)/2+'px';
+            img.style.top = '0px';
+          }else{
+            img.style.top = -(imgHeight - h)/2+'px';
+            img.style.left = '0px';
           }
-        })
-      }
+
+        }else{
+          img.style.width = w+'px'
+          img.style.height = (img.width / ratio) + 'px'
+        }
+      })
     }
   }
 }

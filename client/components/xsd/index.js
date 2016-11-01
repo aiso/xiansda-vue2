@@ -5,6 +5,6 @@ const modules = require.context('./', false, /\.vue$/)
   例如c-button => CButton，c-group-cell＝>CGroupCell
 */
 module.exports = modules.keys().reduce((module, key) => {
-  module[key.replace(/-[a-z]/g, $1 => $1.split('-')[1].toUpperCase()).replace(/(^\.\/)|(.vue)$/g, '').replace(/^c/, $1 => $1.toUpperCase())] = modules(key)
+  module[key.replace(/-[a-z]/g, $1 => $1.split('-')[1].toUpperCase()).replace(/(^\.\/)|(.vue)$/g, '').replace(/^c|v/, $1 => $1.toUpperCase())] = modules(key)
   return module
 }, {})

@@ -44,7 +44,9 @@ export default {
 
 <style>
 .xsd-header{
-  position: absolute;
+  position: fixed;
+  top:0;
+  left:0;
   height: var(--header);
   width:100%;
   display: flex;

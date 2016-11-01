@@ -38,6 +38,48 @@ const routes = [
         requiresAuth: true,
       }
     },
+
+    {
+      path: '/supplier/item/:id(\\d+)',
+      name: 'supplier/item',
+      component: resolve => {
+        require.ensure([], () => {
+          resolve(require('../views/supplier/item'))
+        }, 'group-supplier')
+      },
+      meta: { 
+        icon:'material-local_offer',
+        title:'产品',
+        requiresAuth: true,
+      }      
+    },
+    {
+      path: '/supplier/item/new',
+      component: resolve => {
+        require.ensure([], () => {
+          resolve(require('../views/supplier/item-edit'))
+        }, 'group-supplier')
+      },
+      meta: { 
+        icon:'material-edit',
+        title:'新建产品',
+        requiresAuth: true,
+      }      
+    },
+    {
+      path: '/supplier/item/:id(\\d+)/edit',
+      name: 'supplier/item/edit',
+      component: resolve => {
+        require.ensure([], () => {
+          resolve(require('../views/supplier/item-edit'))
+        }, 'group-supplier')
+      },
+      meta: { 
+        icon:'material-edit',
+        title:'编辑产品',
+        requiresAuth: true,
+      }      
+    },
 ]
 
 const navigation = {

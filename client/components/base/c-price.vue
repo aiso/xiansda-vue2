@@ -1,7 +1,7 @@
 <template>
   <div class="c-price">
     <slot></slot>
-    <span class="c-price-currency">{{pref}}</span><span class="c-price-amount">{{ amount | currency '' }}</span>
+    <span class="c-price-currency">{{pref}}</span><span class="c-price-amount">{{ amount | currency('') }}</span>
   </div>
 </template>
 

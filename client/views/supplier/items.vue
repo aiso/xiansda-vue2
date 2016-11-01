@@ -5,18 +5,19 @@
   			<c-button class="primary" @click="newItem=1">添加产品</c-button>	
   		</div>
     </c-background>
-    <c-pane>
+    <div class="p10 bg-white">
       <c-cell v-for='item in items'>
-        <xsd-item :item='item' @click="onShowItem(item.id)"></xsd-item>
+        <router-link :to="{ name: 'supplier/item', params: { id: item.id }}">
+          <c-xsd-item :item='item'></c-xsd-item>
+        </router-link>
       </c-cell>
-    </c-pane>
+    </div>
   </div>
 </template>
 
 <script>
 import {CPane, CCell, CBackground, CButton, CLoading} from '../../components/base'
-import xx from '../../components/xsd'
-import { xsdItem } from '../../components/xsd'
+import { CXsdItem } from '../../components/xsd'
 export default {
   data(){
   	return {
@@ -41,7 +42,7 @@ export default {
   	CBackground,
   	CButton,
     CLoading,
-    xsdItem
+    CXsdItem
   }
 }
 </script>

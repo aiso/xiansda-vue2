@@ -1,26 +1,13 @@
 <template>
   <div class="c-toolbar">
-    <div class="left">
-      <slot name="left"></slot>  
-    </div>
-    <div class="center">
-      <slot name="center"></slot>  
-    </div>
-    <div class="right">
-      <slot name="right"></slot>  
-    </div>
+    <slot></slot>
   </div>
 </template>
 
 <style>
 .c-toolbar {
-  position: absolute;
-  bottom: 0;
-  left:0;
-  border-top:1px solid #e7e7e9;
   background: white;
   height: var(--footerHeight);
-  z-index: 11;
   width: 100%;
   display: flex;
 
@@ -29,8 +16,6 @@
   }
 
   & .btn{
-    position: absolute;
-    left:0;top:0;
     display: inline-block;
     width: var(--footerHeight);
     height: var(--footerHeight);
