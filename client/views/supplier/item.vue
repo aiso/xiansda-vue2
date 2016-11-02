@@ -1,14 +1,12 @@
 <template>
-  <div class='page-wrapper'>
-    <c-background :state="bgState"></c-background>
+  <c-page :state="state">
     <div v-if="item">
       <div class="flex-row p10 border-bottom">
-        <c-icon name="material-local_offer" class="block"></c-icon>
-        <div class="flex-auto plr10">
-          <c-price :amount="item.price" ></c-price>
+        <div class="flex-auto">
         </div>
+        <h5 class="c-text-light plr10">售价</h5>
         <div>
-          <h5 class="c-text-light">售价</h5>
+          <c-price :amount="item.price" class="c-red"></c-price>
         </div>
       </div>
       <v-xsd-item :item="item" v-if="!!item"></v-xsd-item>
@@ -21,25 +19,25 @@
         </router-link>
       </c-xsd-toolbar>
     </div>
-  </div>
+  </c-page>
 </template>
 
 
 <script>
-import {CIcon, CPrice, CBackground} from '../../components/base'
+import {CPage, CIcon, CPrice} from '../../components/base'
 import {VXsdItem, CXsdToolbar} from '../../components/xsd'
 
 export default {
   data(){
     return {
-      bgState:'loading',
+      state:this.xsd.state.loading,
       item:null
     }
   },
   activated(){
     this.xsd.item.get(this.$route.params.id).then(item=>{
       this.item = item
-      this.bgState='hide'
+      this.state=this.xsd.state.normal
     })
   },
   methods: {
@@ -53,9 +51,9 @@ export default {
     },
   },
   components: {
+    CPage,
   	CIcon,
     CPrice,
-    CBackground,
     VXsdItem,
     CXsdToolbar
   }

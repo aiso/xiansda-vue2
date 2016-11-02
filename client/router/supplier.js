@@ -1,3 +1,5 @@
+const ROLE_SUPPLIER = 20
+
 const routes = [
     {
       path: '/supplier/businesses',
@@ -9,7 +11,7 @@ const routes = [
       meta: { 
         icon:'material-work',
         title:'我的事务',
-        requiresAuth: true
+        requiresAuth: true, role : ROLE_SUPPLIER
       }
     },
     {
@@ -22,7 +24,7 @@ const routes = [
       meta: { 
         icon:'material-local_offer',
         title:'我的服务',
-        requiresAuth: true,
+        requiresAuth: true, role : ROLE_SUPPLIER
       }      
     },
     {
@@ -35,7 +37,7 @@ const routes = [
       meta: { 
         icon:'material-person',
         title:'用户',
-        requiresAuth: true,
+        requiresAuth: true, role : ROLE_SUPPLIER
       }
     },
 
@@ -50,7 +52,7 @@ const routes = [
       meta: { 
         icon:'material-local_offer',
         title:'产品',
-        requiresAuth: true,
+        requiresAuth: true, role : ROLE_SUPPLIER
       }      
     },
     {
@@ -63,7 +65,7 @@ const routes = [
       meta: { 
         icon:'material-edit',
         title:'新建产品',
-        requiresAuth: true,
+        requiresAuth: true, role : ROLE_SUPPLIER
       }      
     },
     {
@@ -77,7 +79,7 @@ const routes = [
       meta: { 
         icon:'material-edit',
         title:'编辑产品',
-        requiresAuth: true,
+        requiresAuth: true, role : ROLE_SUPPLIER
       }      
     },
 ]

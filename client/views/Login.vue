@@ -79,7 +79,10 @@ export default {
   methods: {
     loginSubmit(){
       this.xsd.user.login({ uid:this.username.value, pwd:this.password.value }).then(()=>{
-        this.$router.replace(this.$store.getters.navigation.home)
+        if(!!this.$route.query.redirect)
+          this.$router.replace(this.$route.query.redirect)
+        else
+          this.$router.replace(this.$store.getters.navigation.home)
       })
       /*
       .then(()=>{

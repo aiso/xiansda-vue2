@@ -18,5 +18,11 @@ export default {
 .c-icon {
   display: inline-block;
   font-size :20px;
+
+  &.block{
+  	text-align: center;
+  	width: var(--blockSize);
+  	height: var(--blockSize);
+  }
 }
 </style>

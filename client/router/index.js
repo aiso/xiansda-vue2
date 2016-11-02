@@ -28,6 +28,12 @@ let routes = [
 import supplier from './supplier'
 routes = routes.concat(supplier.routes)
 
+import station from './station'
+routes = routes.concat(station.routes)
+
+import client from './client'
+routes = routes.concat(client.routes)
+
 const router = new Router({
   mode: 'hash',
   routes

@@ -1,5 +1,5 @@
 <template>
-  <div :class="c-avatar">
+  <div class="c-avatar">
     <c-thumbnail :src="img" :width="size" :height="size"></c-thumbnail>
   </div>
 </template>

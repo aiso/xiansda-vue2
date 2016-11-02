@@ -22,6 +22,10 @@ xsd.install = function (Vue) {
           nav:require('./nav'),
           trans:require('./trans'),
           regex:require('./regex'),
+          state: {
+            normal:'normal',
+            loading:'loading'
+          } 
         }
       }
 	  },
@@ -44,7 +48,8 @@ xsd.install = function (Vue) {
       get () {
         return this.$root.$refs.xsdNavbar
       }
-    }
+    },
+  
  	})
 
   require('./filter').install(Vue)

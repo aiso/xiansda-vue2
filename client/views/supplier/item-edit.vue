@@ -1,6 +1,5 @@
 <template>
-  <div class='page-wrapper'>
-    <c-background :state="bgState"></c-background>
+  <c-page :state="state">
     <c-pane v-if="item">
       <div class="divider"></div>
       <div>
@@ -51,29 +50,29 @@
       <c-button class="mr10 primary" label="保存" :submit="save" :disabled="invalid"></c-button>
     </c-xsd-toolbar>
 
-  </div>
+  </c-page>
 </template>
 
 
 <script>
-import { CBackground, CPane, CCell, CLabel, CButton, CIcon, CThumbnail, CFormCell, CAutosizeTextarea } from '../../components/base'
+import { CPage, CPane, CCell, CLabel, CButton, CIcon, CThumbnail, CFormCell, CAutosizeTextarea } from '../../components/base'
 import { CXsdToolbar } from '../../components/xsd'
 import ImageUtil from '../../utils/image'
 
 export default {
   data () {
     return {
-      bgState:'hide',
+      state:this.xsd.state.normal,
       item: { id:0, title:null, content:null, price:null },
       images: [],
     }
   },
   activated(){
     if(!!this.itemId){
-      this.bgState = 'loading'
+      this.state = this.xsd.state.loading
       this.xsd.item.get(this.itemId).then(item=>{
         this.initData(item);
-         this.bgState = 'hide'
+         this.state = this.xsd.state.normal
       })
     }else{
       this.item = { id:0, title:null, content:null, price:null }
@@ -136,7 +135,7 @@ export default {
     }
   },
   components: {
-    CBackground,
+    CPage,
     CPane, 
     CCell, 
     CLabel, 

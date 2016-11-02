@@ -19,6 +19,7 @@ const initActions = actions => {
 const actions = () => _actions
 const action = id => _actions.find(a=>a.id==id)
 */
+
 export default {
 	img:'images/noimg.jpg',
 	role,

@@ -1,6 +1,6 @@
 <template>
   <c-page>
-		businesses123
+		transes
   </c-page>
 </template>
 
@@ -8,10 +8,6 @@
 import { CPage } from '../../components/base'
 
 export default {
-  beforeRouteEnter : (to, from, next) => {
-  	console.log('11111')
-  	next()
-  },
   components: {
   	CPage
   }
