@@ -15,6 +15,20 @@ const routes = [
       }
     },
     {
+      path: '/station/transes/client/:id(\\d+)',
+      name: '/station/transes/client',
+      component: resolve => {
+        require.ensure([], () => {
+          resolve(require('../views/station/transes-client'))
+        }, 'group-station')
+      },
+      meta: { 
+        icon:'material-work',
+        title:'事务',
+        requiresAuth: true, role: ROLE_STATION
+      }
+    },
+    {
       path: '/station/agents',
       component: resolve => {
         require.ensure([], () => {

@@ -24,7 +24,7 @@
           <input class="input-simple text-center font-montserrat full-width" v-model="fee" placeholder="0.00" style="font-size:16px" />
         </div>
         <div>
-          <h5 class="c-text-light mb5">13606035386</h5>
+          <h5 class="c-text-light mb5">销售价格</h5>
           <c-price :amount="price" class="c-red"></c-price>
         </div>
       </div>
@@ -51,7 +51,7 @@ export default {
   },
   watch: {
     item(val){
-      if(!!val) this.fee = this.item.agent.fee
+      if(!!val) this.fee = (!!val.agent)?val.agent.fee:''
     }
   },
   computed: {

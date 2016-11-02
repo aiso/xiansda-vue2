@@ -16,7 +16,7 @@ const get = aid => actions.find(s=>s.config.id==aid)
 const config = aid => get(aid).config
 const configs = () => actions.map(action=>action.config)
 
-export default {
+module.exports = {
 	init,
 	all,
 	get,
