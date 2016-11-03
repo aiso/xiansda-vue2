@@ -72,7 +72,7 @@ export default {
       line-height: 48px;
       font-size:24px;
       text-align: center;
-      color:var(--textLight);
+      color:var(--grayLight);
     }
 
     &:active{

@@ -34,6 +34,9 @@ routes = routes.concat(station.routes)
 import client from './client'
 routes = routes.concat(client.routes)
 
+import service from './service'
+routes = routes.concat(service.routes)
+
 const router = new Router({
   mode: 'hash',
   routes

@@ -1,6 +1,6 @@
 <template>
-  <div :class="['text-center nowrap', stat]">
-    <c-icon :name="cfg.icon"></c-icon>
+  <div :class="['c-action-status', stat]" v-if="!!cfg">
+    <c-icon :name="cfg.icon" size=30></c-icon>
     <h5>{{cfg.name}}</h5>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
     },
   },
   data(){
-    return{
+    return {
       cfg:this.xsd.action.config(this.action.action),
       stat:this.action.stat?'c-green':'c-orange'
     }
@@ -26,3 +26,9 @@ export default {
 }
 
 </script>
+
+<style>
+.c-action-status{
+  text-align: center;
+}
+</style>

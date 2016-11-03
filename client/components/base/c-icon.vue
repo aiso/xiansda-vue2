@@ -6,7 +6,7 @@
 <script>
 export default {
   props: {
-    name: String
+    name: String,
   },
   components: {
     "icon": require("vue-icons")

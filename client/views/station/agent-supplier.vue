@@ -37,7 +37,7 @@
 <script>
 import { CPage, CPane, CCell, CIcon, CPrice, CAvatar } from '../../components/base'
 import { CXsdItem, CXsdToolbar } from '../../components/xsd'
-import MAgentItem from '../../components/station/m-agent-item'
+import { MAgentItem } from '../../components/station'
 
 
 export default {

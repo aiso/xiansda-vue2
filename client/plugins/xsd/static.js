@@ -20,7 +20,7 @@ const actions = () => _actions
 const action = id => _actions.find(a=>a.id==id)
 */
 
-export default {
+module.exports = {
 	img:'images/noimg.jpg',
 	role,
 	roleName,

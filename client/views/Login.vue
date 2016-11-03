@@ -24,6 +24,7 @@
 
 <script>
 import { CPane, CFormCell, CIcon, CTextfield, CButton } from '../components/base'
+import createPersist from '../utils/store'
 
 export default {
   data(){
@@ -57,7 +58,8 @@ export default {
         name:'password',
         value:null,
         attrs: {
-          placeholder: '密码'
+          placeholder: '密码',
+          type:'password'
         },
         validators: {
           required: true,
@@ -69,6 +71,13 @@ export default {
           this.validations.passwordMinlength = result.minlength
         }
       }      
+    }
+  },
+  activated(){
+    const localStore = createPersist('AUTH_KEY')
+    const store = localStore.get()
+    if(!!store.user){
+      this.username.value = store.user.uid
     }
   },
   computed: {

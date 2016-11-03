@@ -6,10 +6,6 @@
   	</c-background>
 
     <c-pane v-if="items.length>0">
-      <div class="flex-row c-text-light">
-        <c-icon name="material-work" class="block"></c-icon>
-        <h4 class="text-ls flex-auto">我的服务单</h4>
-      </div>
       <c-cell v-for='item in items'>
       	<router-link :to="{name:'/station/transes/client', params:{id:item.uid}}">
 	        <c-client-trans :uid="item.uid">
@@ -24,7 +20,7 @@
 
 <script>
 import { CPage, CBackground, CPane, CCell, CIcon } from '../../components/base'
-import CClientTrans from '../../components/station/c-client-trans'
+import { CClientTrans } from '../../components/station'
 import syncTrans from '../../mixins/sync-trans'
 
 export default {

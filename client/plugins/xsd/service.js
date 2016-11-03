@@ -4,7 +4,7 @@ function XsdService(config){
 }
 
 XsdService.prototype.surl = function(url){
-	return 's'+ this.config.id +'/' + url
+	return '/s'+ this.config.id +'/' + url
 }
 XsdService.prototype.route = function(url, params){
 	router.go({ name:this.surl(url), params })
@@ -33,7 +33,7 @@ const all = () => services
 const get = sid => services.find(s=>s.config.id==sid)
 const config = sid => get(sid).config
 
-export default {
+module.exports = {
 	init,
 	all,
 	get,

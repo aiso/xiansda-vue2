@@ -55,7 +55,7 @@ const loadEntity = (...names) => {
 		return Promise.all(names.map(name=>loadEntity(name)))
 }
 
-export default {
+module.exports = {
 	load : loadEntity,
 	loadAll: ()=>{
 		const names = Object.keys(entities)

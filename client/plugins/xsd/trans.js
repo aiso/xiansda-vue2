@@ -24,6 +24,6 @@ const agentAmount = (price, quantity, agent) => {
 	}
 } 
 
-export default {
+module.exports = {
 	agentAmount,
 }
