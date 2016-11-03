@@ -1,5 +1,5 @@
 <template>
-  <c-page>
+  <c-page :state="state">
     <c-pane>
       <div class="flex-row border-bottom list-cell" v-if="station">
         <div>
@@ -31,32 +31,35 @@
 import { CPage, CPane, CAvatar, CCell } from '../../components/base'
 import { CXsdItem, CXsdProfile } from '../../components/xsd'
 import { CItemAgent } from '../../components/service'
+//import store from '../../store'
 
 export default {
   data(){
     return{
+      state:'loading',
       items:[],
       station:null,
+      profile:this.$store.getters.profile
     }
   },
+  /*
+  beforeRouteEnter (to, from, next) {
+    console.log(store.getters.user)
+    next()
+  },*/
   created(){
-    this.xsd.api.getCache('client/items').then(data=>{
-      this.initData(data)
-    })	  
-    /*
-	  if(!!this.profile.station){
-	    this.xsd.api.getCache('client/items').then(data=>{
-	      this.initData(data)
-	    })	      
-	  }
-	   else
-		    transition.redirect('/client/station')
-		*/
+	  if(!!this.profile.station)
+      this.loadData()
+    else
+      this.$router.push('/client/station')
   },
   methods: {
-    initData(data){
-      this.items = data.items
-      this.station = data.station
+    loadData(data){
+      this.xsd.api.getCache('client/items').then(data=>{
+        this.items = data.items
+        this.station = data.station
+        this.state = 'normal'
+      })  
     }
   },
   components: {
