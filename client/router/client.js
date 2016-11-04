@@ -40,6 +40,19 @@ const routes = [
         requiresAuth: true, role : ROLE_CLIENT
       }
     },
+    {
+      path: '/client/station',
+      component: resolve => {
+        require.ensure([], () => {
+          resolve(require('../views/client/station'))
+        }, 'group-client')
+      },
+      meta: { 
+        icon:'material-store_mall_directory',
+        title:'服务站',
+        requiresAuth: true, role : ROLE_CLIENT
+      }
+    },
 ]
 
 const navigation = {

@@ -48,7 +48,7 @@ export default {
     next()
   },*/
   created(){
-	  if(!!this.profile.station)
+	if(!!this.profile.station)
       this.loadData()
     else
       this.$router.push('/client/station')

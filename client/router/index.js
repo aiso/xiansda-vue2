@@ -15,6 +15,10 @@ let routes = [
       component: require('../views/Login')
     },
     {
+      path: '/map/location',
+      component: require('../views/map/location')
+    },
+    {
       path: '/demo/validator',
       component: require('../views/demo/Validator'),
       //meta: { requiresAuth: true }      

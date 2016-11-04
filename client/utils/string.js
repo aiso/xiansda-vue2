@@ -26,6 +26,6 @@ StringArray.prototype.count = function(){
 	return this.arr.length
 }
 
-export default {
+module.exports = {
 	StringArray
 }
