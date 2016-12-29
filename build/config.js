@@ -13,7 +13,7 @@ const paths = {
 const pkg = require('../package')
 
 module.exports = {
-  port: 4000,
+  port: 4100,
   title: 'xiansda-vue2',
   vendor: Object.keys(pkg.dependencies),
   babel: {

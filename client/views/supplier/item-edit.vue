@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       state:this.xsd.state.normal,
-      item: { id:0, title:null, content:null, price:null },
+      item: { id:0, title:null, content:null, price:null, service:101 },
       images: [],
     }
   },
